@@ -14,7 +14,8 @@ leveldb-repairdb: libsnappy.a libleveldb.a
 .PHONY: clean
 
 clean:
-	cd snappy && rm -rf build && rm -f libsnappy.a
-	rm libsnappy.a
-	cd leveldb && make clean
-	rm libleveldb.a
+	make -C snappy clean
+	rm -f libsnappy.a
+	make -C leveldb clean
+	rm -f libleveldb.a
+	rm -f leveldb-repairdb
