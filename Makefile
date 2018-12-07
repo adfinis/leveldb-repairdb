@@ -1,11 +1,11 @@
 all: leveldb-repairdb
 
 libsnappy.a: snappy/*.cc snappy/*.h
-	cd snappy && ./autogen.sh && ./configure && $(MAKE)
-	cp snappy/.libs/libsnappy.a ./
+	cmake snappy && make -C snappy
+	cp snappy/libsnappy.a ./
 
 libleveldb.a: leveldb/include/leveldb/*.h leveldb/db/*.c leveldb/db/*.cc leveldb/db/*.h
-	cd leveldb && $(MAKE)
+	make -C leveldb
 	cp leveldb/out-static/libleveldb.a ./
 
 leveldb-repairdb: libsnappy.a libleveldb.a
