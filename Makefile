@@ -1,8 +1,9 @@
 all: leveldb-repairdb
 
 libsnappy.a: snappy/*.cc snappy/*.h
-	cmake snappy && make -C snappy
-	cp snappy/libsnappy.a ./
+	mkdir -p snappy/build
+        (cd snappy/build; cmake -S ../ && make)
+        cp snappy/build/libsnappy.a ./
 
 libleveldb.a: leveldb/include/leveldb/*.h leveldb/db/*.c leveldb/db/*.cc leveldb/db/*.h
 	make -C leveldb
